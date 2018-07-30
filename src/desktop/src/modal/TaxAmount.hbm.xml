@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 31, 2018 12:10:32 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modal.TaxAmount" table="tax_amount" catalog="easyInvoice" optimistic-lock="version">
+        <id name="idtaxAmount" type="java.lang.Integer">
+            <column name="idtax_amount" />
+            <generator class="identity" />
+        </id>
+        <property name="type" type="string">
+            <column name="type" length="45" />
+        </property>
+        <property name="amount" type="java.lang.Double">
+            <column name="amount" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

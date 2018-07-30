@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 31, 2018 12:10:32 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modal.Client" table="client" catalog="easyInvoice" optimistic-lock="version">
+        <id name="idclient" type="java.lang.Integer">
+            <column name="idclient" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="taxType" class="modal.TaxType" fetch="select">
+            <column name="tax_type_idtax_type" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="100" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="250" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" />
+        </property>
+        <property name="vatNum" type="string">
+            <column name="vat_num" length="45" />
+        </property>
+        <property name="svatNum" type="string">
+            <column name="svat_num" length="45" />
+        </property>
+        <property name="nbtStatus" type="java.lang.Boolean">
+            <column name="nbt_status" />
+        </property>
+        <property name="vatStatus" type="java.lang.Boolean">
+            <column name="vat_status" />
+        </property>
+        <set name="projects" table="project" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="client_idclient" not-null="true" />
+            </key>
+            <one-to-many class="modal.Project" />
+        </set>
+    </class>
+</hibernate-mapping>

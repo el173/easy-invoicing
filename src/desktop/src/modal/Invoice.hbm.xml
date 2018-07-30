@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 31, 2018 12:10:32 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modal.Invoice" table="invoice" catalog="easyInvoice" optimistic-lock="version">
+        <id name="idinvoice" type="java.lang.Integer">
+            <column name="idinvoice" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="incomeType" class="modal.IncomeType" fetch="select">
+            <column name="income_type_idincome_type" not-null="true" />
+        </many-to-one>
+        <many-to-one name="invoiceType" class="modal.InvoiceType" fetch="select">
+            <column name="invoice_type_idinvoice_type" not-null="true" />
+        </many-to-one>
+        <many-to-one name="project" class="modal.Project" fetch="select">
+            <column name="project_idproject" not-null="true" />
+        </many-to-one>
+        <property name="date" type="timestamp">
+            <column name="date" length="19" />
+        </property>
+        <property name="amount" type="java.lang.Double">
+            <column name="amount" precision="22" scale="0" />
+        </property>
+        <property name="vatAmount" type="java.lang.Double">
+            <column name="vat_amount" precision="22" scale="0" />
+        </property>
+        <property name="nbtAmount" type="java.lang.Double">
+            <column name="nbt_amount" precision="22" scale="0" />
+        </property>
+        <property name="total" type="string">
+            <column name="total" length="45" />
+        </property>
+        <set name="recipts" table="recipt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="invoice_idinvoice" not-null="true" />
+            </key>
+            <one-to-many class="modal.Recipt" />
+        </set>
+    </class>
+</hibernate-mapping>

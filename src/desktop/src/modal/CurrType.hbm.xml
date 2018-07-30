@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 31, 2018 12:10:32 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modal.CurrType" table="curr_type" catalog="easyInvoice" optimistic-lock="version">
+        <id name="idcurrType" type="java.lang.Integer">
+            <column name="idcurr_type" />
+            <generator class="identity" />
+        </id>
+        <property name="type" type="string">
+            <column name="type" length="45" />
+        </property>
+        <set name="projects" table="project" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="curr_type_idcurr_type" not-null="true" />
+            </key>
+            <one-to-many class="modal.Project" />
+        </set>
+    </class>
+</hibernate-mapping>
